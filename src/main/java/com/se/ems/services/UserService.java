@@ -1,6 +1,7 @@
 package com.se.ems.services;
 
 import com.se.ems.config.AppException;
+import com.se.ems.dto.JwtResponse;
 import com.se.ems.dto.UserDto;
 import com.se.ems.entity.User;
 import com.se.ems.repository.UserRepo;
@@ -40,8 +41,8 @@ public class UserService {
 
     private User transformUserDtoUser(UserDto userdto) {
         User user = new User();
-        user.setFirstName(userdto.getFirstName());
-        user.setLastName(userdto.getLastName());
+        user.setFullname(userdto.getFullName());
+        user.setPhoneNumber(userdto.getPhoneNumber());
         user.setEmail(userdto.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(userdto.getPassword()));
         return user;
@@ -50,17 +51,17 @@ public class UserService {
     private UserDto transformUserDtoFromUser(User userEn) {
         UserDto user = new UserDto();
         user.setId(userEn.getId());
-        user.setFirstName(userEn.getFirstName());
-        user.setLastName(userEn.getLastName());
+        user.setFullName(userEn.getFullname());
+        user.setPhoneNumber(userEn.getPhoneNumber());
         user.setEmail(userEn.getEmail());
         return user;
     }
 
-    public String login(UserDto userdto) {
+    public JwtResponse login(UserDto userdto) {
      User user =  userRepo.findByEmail(userdto.getEmail()).orElseThrow(()->new AppException("User not found"));
         if (!BCrypt.checkpw(userdto.getPassword(), user.getPassword())) {
             throw new BadCredentialsException("PassWord not matched");
         }
-        return jwtUtil.generateToken(user.getEmail());
+        return new JwtResponse(jwtUtil.generateToken(user.getEmail()),transformUserDtoFromUser(user));
     }
 }

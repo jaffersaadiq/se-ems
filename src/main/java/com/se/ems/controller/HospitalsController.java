@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/se-ems/hospital")
+@CrossOrigin("*")
 public class HospitalsController {
 
     @Autowired

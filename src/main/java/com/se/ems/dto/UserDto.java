@@ -7,15 +7,30 @@ import jakarta.validation.constraints.NotBlank;
 public class UserDto {
     private String id;
     @NotBlank
-    private String firstName;
-    @NotBlank
-    private String lastName;
+    private String fullName;
     @NotBlank
     private String email;
-
+    @NotBlank
+    private String phoneNumber;
     @NotBlank
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String password;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
     public String getId() {
         return id;
@@ -31,22 +46,6 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
     }
 
     public String getPassword() {
