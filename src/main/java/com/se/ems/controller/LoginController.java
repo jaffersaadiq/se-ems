@@ -1,6 +1,7 @@
 package com.se.ems.controller;
 
 import com.se.ems.dto.JwtResponse;
+import com.se.ems.dto.LoginDto;
 import com.se.ems.dto.UserDto;
 import com.se.ems.services.UserService;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ public class LoginController {
     private UserService userService;
 
     @PostMapping("login")
-    public JwtResponse login(@RequestBody UserDto user) {
+    public JwtResponse login(@RequestBody LoginDto user) {
         JwtResponse string =  userService.login(user);
         logger.info("Successful "+string.getToken());
         return string;

@@ -40,7 +40,9 @@ public class HospitalService {
 
 
     public HospitalsDto addHospital(HospitalsDto hospitalEn) {
-        return transformDtoFromEntity(hospitalRepo.save(transformEntityfromDro(hospitalEn)));
+       Hospitals hospitals= transformEntityfromDro(hospitalEn);
+        hospitalRepo.save(hospitals);
+        return transformDtoFromEntity(hospitals);
     }
 
 
