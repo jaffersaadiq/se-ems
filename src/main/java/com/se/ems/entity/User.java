@@ -19,6 +19,32 @@ public class User {
     private String specialty;
     private String licenseNumber;
 
+    private String emergencyContact;
+
+    private String allergies;
+
+    private String gender;
+
+    private String blood;
+
+    private String age;
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getBlood() {
+        return blood;
+    }
+
+    public void setBlood(String blood) {
+        this.blood = blood;
+    }
+
     public String getType() {
         return type;
     }
@@ -82,4 +108,27 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getEmergencyContact() {
+        return emergencyContact;
+    }
+
+    public void setEmergencyContact(String emergencyContact) {
+        this.emergencyContact = emergencyContact;
+    }
+
+    public String getAllergies() {
+        return allergies;
+    }
+
+    public void setAllergies(String allergies) {
+        this.allergies = allergies;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 }

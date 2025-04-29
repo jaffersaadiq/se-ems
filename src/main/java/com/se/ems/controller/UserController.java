@@ -1,5 +1,6 @@
 package com.se.ems.controller;
 
+import com.se.ems.dto.MedicalHistoryDto;
 import com.se.ems.dto.UserDto;
 import com.se.ems.services.UserService;
 import jakarta.validation.Valid;
@@ -20,9 +21,29 @@ public class UserController {
         return userService.saveUser(user);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<UserDto> getAllUsers() {
         return  userService.getAllUsers();
+    }
+
+    @GetMapping("/byEmail")
+    public UserDto getuser(@RequestParam String email) {
+        return  userService.getUserByEmail(email);
+    }
+
+    @PutMapping("/update")
+    public UserDto updateUser(@RequestBody UserDto user) {
+        return userService.updateUser(user);
+    }
+
+    @PostMapping("/medical/history")
+    public List<MedicalHistoryDto> saveMedicalHistory(@RequestBody List<MedicalHistoryDto> medicalHistoryDto) {
+        return userService.saveMedicalHistory(medicalHistoryDto);
+    }
+
+    @GetMapping("/medical/history")
+    public List<MedicalHistoryDto> getMedicalHistoryForuser(@RequestParam String userId) {
+        return userService.getMedicalHistoryForuser(userId);
     }
 
 }
