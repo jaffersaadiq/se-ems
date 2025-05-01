@@ -1,14 +1,12 @@
 package com.se.ems.services;
 
 import com.se.ems.config.AppException;
-import com.se.ems.dto.JwtResponse;
-import com.se.ems.dto.LoginDto;
-import com.se.ems.dto.MedicalHistoryDto;
-import com.se.ems.dto.UserDto;
+import com.se.ems.dto.*;
 import com.se.ems.entity.MedicalHistory;
 import com.se.ems.entity.User;
 import com.se.ems.repository.MedicalHistoryRepo;
 import com.se.ems.repository.UserRepo;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -106,7 +104,6 @@ public class UserService {
         user.setPhoneNumber(userdto.getPhoneNumber());
         user.setSpecialty(userdto.getSpecialty());
         user.setLicenseNumber(userdto.getLicenseNumber());
-        user.setType(userdto.getType());
         user.setGender(userdto.getGender());
         user.setAllergies(userdto.getAllergies());
         user.setEmergencyContact(userdto.getEmergencyContact());
@@ -127,23 +124,13 @@ public class UserService {
         return medicalHistoryRepo.findByUserId(userId).stream().map(this::transforMedicalHistory).toList();
     }
     public MedicalHistoryDto transforMedicalHistory(MedicalHistory medicalhistory){
-        MedicalHistoryDto dto = new MedicalHistoryDto();
-        dto.setId(medicalhistory.getId());
-        dto.setUserId(medicalhistory.getUserId());
-        dto.setName(medicalhistory.getName());
-        dto.setValue(medicalhistory.getValue());
-        return dto;
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(medicalhistory, MedicalHistoryDto.class);
     }
 
     public MedicalHistory transforMedicalHistoryEntity(MedicalHistoryDto medicalHistoryDto){
-        if(medicalHistoryDto.getName()==null||medicalHistoryDto.getValue()==null){
-            throw new AppException("Medical History  or Value is null");
-        }
-        MedicalHistory entity = new MedicalHistory();
-        entity.setUserId(medicalHistoryDto.getUserId());
-        entity.setName(medicalHistoryDto.getName());
-        entity.setValue(medicalHistoryDto.getValue());
-        return entity;
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(medicalHistoryDto, MedicalHistory.class);
     }
 
 }

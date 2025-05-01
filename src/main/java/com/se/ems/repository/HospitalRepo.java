@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface HospitalRepo extends MongoRepository<Hospitals, String> {
     List<Hospitals> findAllByZip(long zip);
+    List<Hospitals> findTop100ByOrderByName();
 }

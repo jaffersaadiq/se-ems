@@ -15,7 +15,7 @@ public class HospitalService {
     HospitalRepo hospitalRepo;
 
     public List<HospitalsDto> getAllHospitals() {
-        return hospitalRepo.findAll().stream().map(this::transformDtoFromEntity).toList();
+        return hospitalRepo.findTop100ByOrderByName().stream().map(this::transformDtoFromEntity).toList();
     }
 
 

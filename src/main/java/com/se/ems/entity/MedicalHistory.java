@@ -12,9 +12,10 @@ public class MedicalHistory {
 
     private String userId;
 
-    private String name;
-
-    private String value;//Y/N
+    private String doctor;
+    private String date;
+    private String diagnosis;
+    private String treatment;
 
     public String getId() {
         return id;
@@ -28,19 +29,35 @@ public class MedicalHistory {
         this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public String getDoctor() {
+        return doctor;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDoctor(String doctor) {
+        this.doctor = doctor;
     }
 
-    public String getValue() {
-        return value;
+    public String getDate() {
+        return date;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
+    }
+
+    public String getTreatment() {
+        return treatment;
+    }
+
+    public void setTreatment(String treatment) {
+        this.treatment = treatment;
     }
 }
