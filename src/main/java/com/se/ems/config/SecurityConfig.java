@@ -3,6 +3,7 @@ package com.se.ems.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -33,7 +34,7 @@ public class SecurityConfig {
         //allRequest should be authenticated
      return   http.csrf(AbstractHttpConfigurer::disable).authorizeHttpRequests(
                         request ->
-                                request.requestMatchers("/se-ems/login","/se-ems/user/register","/se-ems/assistant").permitAll()
+                                request .requestMatchers(HttpMethod.OPTIONS).permitAll().requestMatchers("/se-ems/login","/se-ems/user/register","/se-ems/assistant").permitAll()
                                         .requestMatchers("/error").permitAll()
                                         .anyRequest().authenticated()).
                 httpBasic(Customizer.withDefaults()).

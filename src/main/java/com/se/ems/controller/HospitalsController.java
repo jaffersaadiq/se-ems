@@ -25,4 +25,14 @@ public class HospitalsController {
     public HospitalsDto addHospital(@RequestBody HospitalsDto hospital){
         return hospitalService.addHospital(hospital);
     }
+
+    @PostMapping("/All")
+    public List<HospitalsDto> addHospital(@RequestBody List<HospitalsDto> hospitals){
+        return hospitalService.addHospitals(hospitals);
+    }
+
+    @GetMapping("/zip")
+    public List<HospitalsDto> getHospitalbyzip(@RequestParam Long zip){
+        return hospitalService.getHospitalbyzip(zip);
+    }
 }
