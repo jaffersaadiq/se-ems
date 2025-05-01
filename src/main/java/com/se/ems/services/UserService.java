@@ -114,9 +114,11 @@ public class UserService {
         return transformUserDtoFromUser((User)userRepo.save(user));
     }
 
-    public List<MedicalHistoryDto> saveMedicalHistory(List<MedicalHistoryDto> medicalhistorydto){
-        return  medicalHistoryRepo.saveAll(medicalhistorydto.stream()
-                .map(this::transforMedicalHistoryEntity).toList()).stream().map(this::transforMedicalHistory).toList();
+    public List<MedicalHistoryDto> saveMedicalHistory(MedicalHistoryDto medicalhistorydto){
+        userRepo.findById(medicalhistorydto.getUserId()).orElseThrow(()->new AppException("User not found"));
+          transforMedicalHistory
+                (medicalHistoryRepo.save(transforMedicalHistoryEntity(medicalhistorydto)));
+          return getMedicalHistoryForuser(medicalhistorydto.getUserId());
     }
 
 

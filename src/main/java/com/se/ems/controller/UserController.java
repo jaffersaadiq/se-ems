@@ -37,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("/medical/history")
-    public List<MedicalHistoryDto> saveMedicalHistory(@RequestBody List<MedicalHistoryDto> medicalHistoryDto) {
+    public List<MedicalHistoryDto> saveMedicalHistory(@RequestBody  MedicalHistoryDto medicalHistoryDto) {
         return userService.saveMedicalHistory(medicalHistoryDto);
     }
 
